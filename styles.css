@@ -1,5 +1,8 @@
+body{
+	margin: 0;
+}
 .person{
-	padding: .5rem;
+	padding: 1rem 2rem;
 }
 .person-name{
 	font-size: 1.5rem;
@@ -11,7 +14,40 @@
 .person-details{
 	padding-left: 2rem;
 }
+#banner{
+	background-color: #529d00;
+	display: flex;
+	flex-direction: column;
+	left: 0;
+	position: sticky;
+	top: 0;
+	width: 100vw;
+}
+#banner-title{
+	font-size: 6rem;
+	display: flex;
+	justify-content: center;
+/*	transform: translate(0, -.5rem);*/
+}
+#banner-menu{
+	display: flex;
+	justify-content: center;
+	font-size: 1.66rem;
+	gap: 3rem;
+	padding: .33rem;
+}
+#banner-menu label{
+	padding: 0.1rem 1rem;
+	background-color: forestgreen;
+	border-radius: .5rem;
+	opacity: .66;
+	transition: .2s;
+	cursor: pointer;
+}
+#banner-menu label:hover{
+	opacity: 1;
+}
 #content{
-	padding-top: 1rem;
 	font-size: 1.25rem;
+	padding-top: 1rem;
 }

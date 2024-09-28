@@ -3,15 +3,21 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="styles.css">
 		<link rel="icon" href="icon.svg">
-		<title>Family Tree!</title>
+		<title>Family Tree</title>
 	</head>
 	<body>
 		<!-- hidden -->
 		<input id="fileInput" type="file" accept=".json" onChange="uploadFile(this)" style="display:none;">
-		<!-- actions -->
-		<label for="fileInput">Upload</label>
-		<label onClick="downloadFile()">Download</label>
-		<label onClick="newPerson()">New Person</label>
+		<!-- banner -->
+		<div id="banner">
+			<div id="banner-title">Family Tree</div>
+			<!-- actions -->
+			<div id="banner-menu">
+				<label for="fileInput">Upload</label>
+				<label onClick="downloadFile()">Download</label>
+				<label onClick="newPerson()">New Person</label>
+			</div>
+		</div>
 		<!-- content -->
 		<div id="content"></div>
 	</body>
