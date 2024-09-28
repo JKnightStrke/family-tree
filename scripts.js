@@ -1,4 +1,3 @@
-const BR=`<br>`
 let database={}
 function uploadFile(file){
 	let files=event.target.files
@@ -25,16 +24,21 @@ function newPerson(){
 	let fName=prompt(`first name`)
 	let mName=prompt(`middle name`)
 	let lName=prompt(`last name`)
+	// let dob=prompt(`date of birth\ndd/mm/yyyy`)
 	database[fName,Object.keys(database).length]={
 		fName:fName,
 		mName:mName,
 		lName:lName,
+		// dob:dob,
 	}
 	renderPeople()
 }
 function renderPeople(){
 	document.getElementById(`content`).innerHTML=``
 	for(let i1=0;i1<Object.keys(database).length;i1++){
-		document.getElementById(`content`).innerHTML+=`${Object.values(Object.values(database)[i1]).join(` `)}<br>`
+		let pointer=database[i1]
+		let name=`${pointer.fName} ${pointer.mName} ${pointer.lName}`
+		document.getElementById(`content`).innerHTML+=`${name}<br>`
+		// document.getElementById(`content`).innerHTML+=`${Object.values(Object.values(database)[i1]).join(` `)}<br>`
 	}
 }
