@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="icon" href="icon.svg">
+		<title>Family Tree!</title>
+	</head>
+	<body>
+		<!-- hidden -->
+		<input id="fileInput" type="file" accept=".json" onChange="uploadFile(this)" style="display:none;">
+		<!-- actions -->
+		<label for="fileInput">Upload</label>
+		<label onClick="downloadFile()">Download</label>
+		<label onClick="newPerson()">New Person</label>
+		<!-- content -->
+		<div id="content"></div>
+	</body>
+	<script type="text/javascript" src="scripts.js"></script>
+</html>
