@@ -1,9 +1,17 @@
-.details{
-	padding-left: 1rem;
-}
 .person{
 	padding: .5rem;
 }
+.person-name{
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+.person-name-middle{
+	font-style: italic;
+}
+.person-details{
+	padding-left: 2rem;
+}
 #content{
 	padding-top: 1rem;
+	font-size: 1.25rem;
 }

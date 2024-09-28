@@ -37,11 +37,13 @@ function renderPeople(){
 	let contentQueue=``
 	for(let i1=0;i1<Object.keys(database).length;i1++){
 		let pointer=database[i1]
-		let name=`${pointer.fName} ${pointer.mName} ${pointer.lName}`
+		let name=`${pointer.fName} <span class="person-name-middle">${pointer.mName}</span> ${pointer.lName}`
 		contentQueue+=`
 			<div class="person">
-				${name}
-				<div class="details">
+				<div class="person-name">
+					${name}
+				</div>
+				<div class="person-details">
 					${pointer.dob}
 				</div>
 			</div>`
