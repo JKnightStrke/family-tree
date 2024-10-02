@@ -1,23 +1,19 @@
 let database={}
 function uploadFile(file){
-	let files=event.target.files
-	let fileReader=new FileReader()
-	fileReader.readAsText(files[0])
-	fileReader.onload=function(e){
+	const reader=new FileReader()
+	reader.onload=e=>{
 		database=JSON.parse(e.target.result)
-		renderPeople()
-	}
+		renderPeople()}
+	reader.readAsText(event.target.files[0])
 }
 function downloadFile(){
-	const fileName=`Family Tree`
-	const content=JSON.stringify(database)
-	const file=new Blob([content],{type:`application/json`})
-	const link=document.createElement(`a`)
-	link.href=URL.createObjectURL(file)
-	link.download=fileName
-	document.body.appendChild(link)
+	const file=new Blob(
+		[JSON.stringify(database)],
+		{type:`application/json`})
+	const link=Object.assign(document.createElement(`a`),{
+		href:URL.createObjectURL(file),
+		download:`Family Tree.json`})
 	link.click()
-	document.body.removeChild(link)
 	URL.revokeObjectURL(link.href)
 }
 function newPerson(){
