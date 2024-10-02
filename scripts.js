@@ -22,10 +22,10 @@ function newPerson(){
 	let lName=prompt(`last name`)
 	let dob=prompt(`date of birth\ndd/mm/yyyy`)
 	database[fName,Object.keys(database).length]={
-		fName:fName,
-		mName:mName,
-		lName:lName,
-		dob:dob,
+		fName,
+		mName,
+		lName,
+		dob,
 	}
 	renderPeople()
 }
