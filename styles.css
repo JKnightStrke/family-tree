@@ -1,19 +1,24 @@
 body{
 	margin: 0;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	box-sizing: border-box;
 }
 .person{
 	padding: 1rem 2rem;
+	.person-name{
+		font-size: 1.5rem;
+		font-weight: bold;
+		.person-name-middle{
+			font-style: italic;
+		}
+	}
 }
-.person-name{
-	font-size: 1.5rem;
-	font-weight: bold;
-}
-.person-name-middle{
-	font-style: italic;
-}
-.person-details{
-	padding-left: 2rem;
-}
+
+
+
 #banner{
 	background-color: #529d00;
 	display: flex;
@@ -22,32 +27,54 @@ body{
 	position: sticky;
 	top: 0;
 	width: 100vw;
-}
-#banner-title{
-	font-size: 6rem;
-	display: flex;
-	justify-content: center;
-/*	transform: translate(0, -.5rem);*/
-}
-#banner-menu{
-	display: flex;
-	justify-content: center;
-	font-size: 1.66rem;
-	gap: 3rem;
-	padding: .33rem;
-}
-#banner-menu label{
-	padding: 0.1rem 1rem;
-	background-color: forestgreen;
-	border-radius: .5rem;
-	opacity: .66;
-	transition: .2s;
-	cursor: pointer;
-}
-#banner-menu label:hover{
-	opacity: 1;
+	#banner-title{
+		font-size: 6rem;
+		display: flex;
+		justify-content: center;
+	}
+	#banner-menu{
+		display: flex;
+		justify-content: center;
+		font-size: 1.66rem;
+		gap: 3rem;
+		padding: .33rem;
+		label{
+			padding: 0.1rem 1rem;
+			background-color: forestgreen;
+			border-radius: .5rem;
+			opacity: .66;
+			transition: .2s;
+			cursor: pointer;
+		}
+	 	label:hover{
+			opacity: 1;
+		}
+	}
 }
 #content{
 	font-size: 1.25rem;
-	padding-top: 1rem;
+	flex: 1 1 0%;
+	display: flex;
+	flex-direction: column; 
+	gap: .5rem;
+	padding: .5rem;
+	#focus{
+		display: flex;
+		#focus-details{
+			flex: 1 1 0%;
+			div{
+				height: auto;
+			}
+		}
+		div{
+			flex: none;
+			height: 100%;
+			
+		}
+	}
+	div{
+		text-align: center;
+		flex: 1 1 0%;
+/*		border: 1px solid black;*/
+	}
 }
