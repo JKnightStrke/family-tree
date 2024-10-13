@@ -28,7 +28,6 @@ function newPerson(){
 	let dob=prompt(`Date of birth\ndd/mm/yyyy`)
 	let dod=prompt(`Date of death (if applicable)\ndd/mm/yyyy`)
 	let job=prompt(`Occupation`)
-	// let age=prompt(`age`)
 	database[fName,Object.keys(database).length]={
 		fName,
 		mName,
@@ -56,9 +55,9 @@ function renderPeople() {
                 <div class="person-details">
                     Date of Birth: ${pointer.dob}<br>
                     Date of Death: ${pointer.dod ? pointer.dod : 'N/A'}<br>
-                    Age: ${pointer.dod ? age : age + ' (currently alive)'}
+                    Age: ${pointer.dod ? age : age + ' (currently alive)'}<br>
+                    Occupation: ${pointer.job}
                 </div>
-                <div>Occupation: ${pointer.job}</div>
             </div>
             <button class="edit-button" onclick="editPerson(${focus})">Edit</button>
         `;
