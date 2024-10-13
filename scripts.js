@@ -26,14 +26,28 @@ function newPerson(){
 	let mName=prompt(`Middle name`)
 	let lName=prompt(`Last name`)
 	let dob=prompt(`Date of birth\ndd/mm/yyyy`)
+	let BPlace=prompt(`Place of birth`)
 	let dod=prompt(`Date of death (if applicable)\ndd/mm/yyyy`)
+	let DPlace=prompt(`Place of death or burryed/resting place`)
+	let sex=prompt(`Gender`)
+	let father=prompt(`Father`)
+	let mother=prompt(`Mother`)
+	let sibling=prompt(`siblings`)
+	let home=prompt(`Lives at`)
 	let job=prompt(`Occupation`)
 	database[fName,Object.keys(database).length]={
 		fName,
 		mName,
 		lName,
 		dob,
+		BPlace,
 		dod,
+		DPlace,
+		sex,
+		father,
+		mother,
+		sibling,
+		home,
 		job,
 	}
 	renderPeople()
@@ -53,9 +67,13 @@ function renderPeople() {
             <div class="person">
                 <div class="person-name">${name}</div>
                 <div class="person-details">
-                    Date of Birth: ${pointer.dob}<br>
-                    Date of Death: ${pointer.dod ? pointer.dod : 'N/A'}<br>
+                    Date of Birth: ${pointer.dob} At: ${pointer.BPlace}<br>
+                    Date of Death: ${pointer.dod ? pointer.dod : 'N/A'} Resids at: ${pointer.DPlace}<br>
                     Age: ${pointer.dod ? age : age + ' (currently alive)'}<br>
+                    Gender: ${pointer.sex}<br>
+                    Father: ${pointer.father} Mother: ${pointer.mother}<br>
+                    siblings: ${pointer.sibling}<br>
+                    home: ${pointer.home}<br>
                     Occupation: ${pointer.job}
                 </div>
             </div>
@@ -71,21 +89,35 @@ function renderPeople() {
 function editPerson(index) {
     let person = database[index];
     // Prompt the user to edit each field
-    let fName = prompt('Edit First Name', person.fName);
-    let mName = prompt('Edit Middle Name', person.mName);
-    let lName = prompt('Edit Last Name', person.lName);
-    let dob = prompt('Edit Date of Birth \ndd/mm/yyyy', person.dob);
-    let dod = prompt('Edit Date of Death \ndd/mm/yyyy', person.dod);
-    let job = prompt('Edit Occupation', person.job);
+    let fName=prompt('Edit First Name', person.fName);
+    let mName=prompt('Edit Middle Name', person.mName);
+    let lName=prompt('Edit Last Name', person.lName);
+    let dob=prompt('Edit Date of Birth \ndd/mm/yyyy', person.dob);
+    let BPlace=prompt(`Edit birth place`);
+    let dod=prompt('Edit Date of Death \ndd/mm/yyyy', person.dod);
+    let DPlace=prompt(`Edit place of death or burryed/resting place`);
+    let sex=prompt(`Edit gender`);
+    let father=prompt(`Edit father`);
+    let mother=prompt(`Edit mother`);
+    let sibling=prompt(`Edit siblings`)
+    let home=prompt(`Edit home`);
+    let job=prompt('Edit Occupation', person.job);
 
     // Update the database with new values
     database[index] = {
-        fName: fName || person.fName,
-        mName: mName || person.mName,
-        lName: lName || person.lName,
-        dob: dob || person.dob,
-        dod: dod || person.dod,
-        job: job || person.job
+        fName:fName||person.fName,
+        mName:mName||person.mName,
+        lName:lName||person.lName,
+        dob:dob||person.dob,
+        BPlace:BPlace||person.BPlace,
+        dod:dod||person.dod,
+        DPlace:DPlace||person.DPlace,
+        sex:sex||person.sex,
+        father:father||person.father,
+        mother:mother||person.mother,
+        sibling:sibling||person.sibling,
+        home:home||person.home,
+        job:job||person.job,
     };
 
     // Re-render the updated person
