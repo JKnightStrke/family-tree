@@ -52,6 +52,7 @@ function newPerson(){
 	}
 	renderPeople()
 }
+
 function renderPeople() {
     let contentQueue = '';
     let pointer = database[focus];  // Get the currently focused person
@@ -59,19 +60,21 @@ function renderPeople() {
     // Check if the pointer exists (meaning a person is selected)
     if (pointer) {
         let name = `${pointer.fName} <span class="person-name-middle">${pointer.mName}</span> ${pointer.lName}`;
-        
-        // Calculate age
+
         const age = calculateAge(pointer.dob, pointer.dod);
         
         contentQueue += `
             <div class="person">
                 <div class="person-name">${name}</div>
                 <div class="person-details">
-                    Date of Birth: ${pointer.dob} At: ${pointer.BPlace}<br>
-                    Date of Death: ${pointer.dod ? pointer.dod : 'N/A'} Resids at: ${pointer.DPlace}<br>
+                    Date of Birth: ${pointer.dob} 
+                    ${pointer.BPlace ? `&nbsp;Place of Birth: ${pointer.BPlace}` : ''}<br>
+                    ${pointer.dod ? `&nbsp;Date of Death: ${pointer.dod}` : ''}
+                    ${pointer.DPlace ? `Place of Death: ${pointer.DPlace}<br>` : ''}
                     Age: ${pointer.dod ? age : age + ' (currently alive)'}<br>
                     Gender: ${pointer.sex}<br>
-                    Father: ${pointer.father} Mother: ${pointer.mother}<br>
+                    Father: ${pointer.father}&nbsp;&nbsp;&nbsp;
+                    Mother: ${pointer.mother}<br>
                     siblings: ${pointer.sibling}<br>
                     home: ${pointer.home}<br>
                     Occupation: ${pointer.job}
@@ -86,6 +89,7 @@ function renderPeople() {
 
     document.getElementById('focus-details').innerHTML = contentQueue;
 }
+
 function editPerson(index) {
     let person = database[index];
     // Prompt the user to edit each field
