@@ -1,25 +1,24 @@
 body{
 	margin: 0;
-	overflow: hidden;
 	display: flex;
 	flex-direction: column;
-	height: 100vh;
 	box-sizing: border-box;
 }
-.person{
-	padding: 1rem 2rem;
 
-	.person-name{
-		font-size: 2rem;
-		font-weight: bold;
-		padding: 0 0 .5rem 0;
-		.person-name-middle{
-			font-style: italic;
-		}
-	}
+.person-name-middle{
+	font-style: italic;
 }
 
-
+.menu-person{
+	font-size: 2em;
+	margin: .5rem 1rem;
+	transition: .5s;
+	display: inline-block;
+}
+.menu-person:hover{
+	cursor: pointer;
+	padding-left: 1rem;
+}
 
 #banner{
 	background-color: #529d00;
@@ -56,29 +55,7 @@ body{
 #content{
 	font-size: 1.25rem;
 	flex: 1 1 0%;
-	display: flex;
-	flex-direction: column; 
-	gap: .5rem;
 	padding: .5rem;
-	#focus{
-		display: flex;
-		#focus-details{
-			flex: 1 1 0%;
-			div{
-				height: auto;
-			}
-		}
-		div{
-			flex: none;
-			height: 100%;
-			
-		}
-	}
-	div{
-		text-align: center;
-		flex: 1 1 0%;
-/*		border: 1px solid black;*/
-	}
 }
 .edit-button{
 	padding: 0.1rem .5rem;

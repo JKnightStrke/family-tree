@@ -5,7 +5,8 @@ function uploadFile(file){
 	reader.onload=e=>{
 		database=JSON.parse(e.target.result)
 		focus=0
-		renderPeople()
+		renderMenu()
+		// renderPerson()
 	}
 	reader.readAsText(event.target.files[0])
 }
@@ -35,7 +36,8 @@ function newPerson(){
 	let sibling=prompt(`siblings`)
 	let home=prompt(`Lives at`)
 	let job=prompt(`Occupation`)
-	database[fName,Object.keys(database).length]={
+	const index=Object.keys(database).length
+	database[index]={
 		fName,
 		mName,
 		lName,
@@ -50,12 +52,25 @@ function newPerson(){
 		home,
 		job,
 	}
-	renderPeople()
+	renderPerson(index)
 }
 
-function renderPeople() {
+function renderMenu() {
+	let contentQueue= '';
+	for (const[key,value]of Object.entries(database)){
+		contentQueue+= `<p class="menu-person" onclick="setFocus(this.id)" id="${key}">${value.fName} <span class="person-name-middle">${value.mName}</span> ${value.lName}</p><br>`;
+	}
+	document.getElementById("content").innerHTML=contentQueue
+}
+function setFocus(index) {
+	focus=index
+	renderPerson()
+
+}
+
+function renderPerson(focusArg=focus) {
     let contentQueue = '';
-    let pointer = database[focus];  // Get the currently focused person
+    let pointer = database[focusArg];  // Get the currently focused person
 
     // Check if the pointer exists (meaning a person is selected)
     if (pointer) {
@@ -80,14 +95,14 @@ function renderPeople() {
                     Occupation: ${pointer.job}
                 </div>
             </div>
-            <button class="edit-button" onclick="editPerson(${focus})">Edit</button>
+            <button class="edit-button" onclick="editPerson(${focusArg})">Edit</button>
         `;
     } else {
         // If no person is focused, you can show a message or simply do nothing
         contentQueue += '<div>No person selected.</div>';
     }
 
-    document.getElementById('focus-details').innerHTML = contentQueue;
+    document.getElementById('content').innerHTML = contentQueue;
 }
 
 function editPerson(index) {
@@ -125,7 +140,7 @@ function editPerson(index) {
     };
 
     // Re-render the updated person
-    renderPeople();
+    renderPerson();
 }
 function calculateAge(dob, dod) {
     const dobDate = new Date(dob.split('/').reverse().join('-')); // Convert dd/mm/yyyy to yyyy-mm-dd format
