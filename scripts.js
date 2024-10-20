@@ -34,6 +34,7 @@ function newPerson(){
 	let father=prompt(`Father`)
 	let mother=prompt(`Mother`)
 	let sibling=prompt(`siblings`)
+	let child=prompt(`children`)
 	let home=prompt(`Lives at`)
 	let job=prompt(`Occupation`)
 	const index=Object.keys(database).length
@@ -49,6 +50,7 @@ function newPerson(){
 		father,
 		mother,
 		sibling,
+		child,
 		home,
 		job,
 	}
@@ -90,12 +92,14 @@ function renderPerson(focusArg=focus) {
                     Gender: ${pointer.sex}<br>
                     Father: ${pointer.father}&nbsp;&nbsp;&nbsp;
                     Mother: ${pointer.mother}<br>
-                    siblings: ${pointer.sibling}<br>
+                    siblings: ${pointer.sibling}&nbsp;&nbsp;&nbsp;
+                    child: ${pointer.child}<br>
                     home: ${pointer.home}<br>
                     Occupation: ${pointer.job}
                 </div>
+                <button class="edit-button" onclick="editPerson(${focusArg})">Edit</button>
             </div>
-            <button class="edit-button" onclick="editPerson(${focusArg})">Edit</button>
+            
         `;
     } else {
         // If no person is focused, you can show a message or simply do nothing
@@ -118,7 +122,8 @@ function editPerson(index) {
     let sex=prompt(`Edit gender`);
     let father=prompt(`Edit father`);
     let mother=prompt(`Edit mother`);
-    let sibling=prompt(`Edit siblings`)
+    let sibling=prompt(`Edit siblings`);
+    let child=prompt(`Edit children`)
     let home=prompt(`Edit home`);
     let job=prompt('Edit Occupation', person.job);
 
@@ -135,6 +140,7 @@ function editPerson(index) {
         father:father||person.father,
         mother:mother||person.mother,
         sibling:sibling||person.sibling,
+        child:child||person.child,
         home:home||person.home,
         job:job||person.job,
     };
