@@ -80,3 +80,19 @@ body{
 .edit-button:hover {
     opacity: 1;
 }
+
+.delete-button{
+	padding: 0.1rem .5rem;
+    background-color: indianred;
+    border-radius: 0.5rem;
+    opacity: 0.66;
+    transition: opacity 0.2s ease;
+    cursor: pointer;
+    color: white;
+    border: none;
+    font-size: 1.25rem;
+    margin-top: 5px;
+}
+.delete-button:hover {
+    opacity: 1;
+}

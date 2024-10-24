@@ -37,7 +37,7 @@ function newPerson(){
 	let child=prompt(`children`)
 	let home=prompt(`Lives at`)
 	let job=prompt(`Occupation`)
-	const index=Object.keys(database).length
+	const index=`${fName} ${dob}`
 	database[index]={
 		fName,
 		mName,
@@ -99,6 +99,7 @@ function renderPerson(focusArg=focus) {
                     Occupation: ${pointer.job}
                 </div>
                 <button class="edit-button" onclick="editPerson(${focusArg})">Edit</button>
+                <button class="delete-button" onclick="deletePerson(${focusArg})">Delete</button>
             </div>
             
         `;
@@ -149,6 +150,15 @@ function editPerson(index) {
     // Re-render the updated person
     renderPerson();
 }
+function deletePerson(index) {
+	if (prompt(`Insert first name to delete person`)==database[index].fName) {
+		delete database[index]
+		renderMenu()
+	}
+
+}
+
+		// Tools
 function calculateAge(dob, dod) {
     const dobDate = new Date(dob.split('/').reverse().join('-')); // Convert dd/mm/yyyy to yyyy-mm-dd format
     const dodDate = dod ? new Date(dod.split('/').reverse().join('-')) : new Date(); // If DOD is provided, convert it; otherwise, use today's date
