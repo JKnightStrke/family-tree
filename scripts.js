@@ -87,7 +87,8 @@ function renderPerson(focusArg=focus) {
                     Date of Birth: ${pointer.dob} 
                     ${pointer.BPlace ? `&nbsp;Place of Birth: ${pointer.BPlace}` : ''}<br>
                     ${pointer.dod ? `&nbsp;Date of Death: ${pointer.dod}` : ''}
-                    ${pointer.DPlace ? `Place of Death: ${pointer.DPlace}<br>` : ''}
+                    ${pointer.DPlace ? `Place of Death: ${pointer.DPlace}` : ''}
+                    ${pointer.dod || pointer.DPlace ? '<br>':''}
                     Age: ${pointer.dod ? age : age + ' (currently alive)'}<br>
                     Gender: ${pointer.sex}<br>
                     Father: ${pointer.father}&nbsp;&nbsp;&nbsp;
