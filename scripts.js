@@ -96,13 +96,13 @@ function renderPerson(focusArg=focus) {
                     siblings: ${pointer.sibling}&nbsp;&nbsp;&nbsp;
                     child: ${pointer.child}<br>
                     home: ${pointer.home}<br>
-                    Occupation: ${pointer.job}
+                    Occupation: ${pointer.job}<br>
+                    <div id="person-controls">
+                    	<button class="edit-button" onclick="editPerson('${focusArg}')">Edit</button>
+                		<button class="delete-button" onclick="deletePerson('${focusArg}')">Delete</button>
+                	</div>
                 </div>
-                <button class="edit-button" onclick="editPerson(${focusArg})">Edit</button>
-                <button class="delete-button" onclick="deletePerson(${focusArg})">Delete</button>
-            </div>
-            
-        `;
+            </div>`;
     } else {
         // If no person is focused, you can show a message or simply do nothing
         contentQueue += '<div>No person selected.</div>';
