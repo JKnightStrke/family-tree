@@ -60,7 +60,7 @@ function newPerson(){
 function renderMenu() {
 	let contentQueue= '';
 	for (const[key,value]of Object.entries(database)){
-		contentQueue+= `<p class="menu-person" onclick="setFocus(this.id)" id="${key}">${value.fName} <span class="person-name-middle">${value.mName}</span> ${value.lName}</p><br>`;
+		contentQueue+= `<p class="menu-person" onclick="setFocus(this.id)" id="${key}">${value.fName} <span id="mName">${value.mName}</span> ${value.lName}</p><br>`;
 	}
 	document.getElementById("content").innerHTML=contentQueue
 }
@@ -76,27 +76,26 @@ function renderPerson(focusArg=focus) {
 
     // Check if the pointer exists (meaning a person is selected)
     if (pointer) {
-        let name = `${pointer.fName} <span class="person-name-middle">${pointer.mName}</span> ${pointer.lName}`;
+        let name = `<span id="fName">${pointer.fName}</span> <span id="mName">${pointer.mName}</span> <span id="lName">${pointer.lName}</span>`;
 
         const age = calculateAge(pointer.dob, pointer.dod);
         
         contentQueue += `
             <div class="person">
-                <div class="person-name">${name}</div>
-                <div class="person-details">
-                    Date of Birth: ${pointer.dob} 
-                    ${pointer.BPlace ? `&nbsp;Place of Birth: ${pointer.BPlace}` : ''}<br>
-                    ${pointer.dod ? `&nbsp;Date of Death: ${pointer.dod}` : ''}
-                    ${pointer.DPlace ? `Place of Death: ${pointer.DPlace}` : ''}
-                    ${pointer.dod || pointer.DPlace ? '<br>':''}
-                    Age: ${pointer.dod ? age : age + ' (currently alive)'}<br>
-                    Gender: ${pointer.sex}<br>
-                    Father: ${pointer.father}&nbsp;&nbsp;&nbsp;
-                    Mother: ${pointer.mother}<br>
-                    siblings: ${pointer.sibling}&nbsp;&nbsp;&nbsp;
-                    child: ${pointer.child}<br>
-                    home: ${pointer.home}<br>
-                    Occupation: ${pointer.job}<br>
+                <div id="person-name">${name}</div>
+                <div id="person-details">
+                    Date of Birth: <span id="dob">${pointer.dob}</span><br>
+                    ${pointer.BPlace ? `Place of Birth: <span id="BPlace">${pointer.BPlace}</span><br>` : ''}
+                    ${pointer.dod ? `Date of Death: <span id="dod">${pointer.dod}</span><br>` : ''}
+                    ${pointer.DPlace ? `Place of Death: <span id="DPlace">${pointer.DPlace}</span><br>` : ''}
+                    Age: <span id="age">${age}</span><br>
+                    Gender: <span id="sex">${pointer.sex}</span><br>
+                    Father: <span id="father">${pointer.father}</span><br>
+                    Mother: <span id="mother">${pointer.mother}</span><br>
+                    siblings: <span id="siblings">${pointer.siblings}</span><br>
+                    children: <span id="children">${pointer.children}</span><br>
+                    home: <span id="home">${pointer.home}</span><br>
+                    Occupation: <span id="job">${pointer.job}</span><br>
                     <div id="person-controls">
                     	<button class="edit-button" onclick="editPerson('${focusArg}')">Edit</button>
                 		<button class="delete-button" onclick="deletePerson('${focusArg}')">Delete</button>
@@ -112,43 +111,28 @@ function renderPerson(focusArg=focus) {
 }
 
 function editPerson(index) {
-    let person = database[index];
-    // Prompt the user to edit each field
-    let fName=prompt('Edit First Name', person.fName);
-    let mName=prompt('Edit Middle Name', person.mName);
-    let lName=prompt('Edit Last Name', person.lName);
-    let dob=prompt('Edit Date of Birth \ndd/mm/yyyy', person.dob);
-    let BPlace=prompt(`Edit birth place`);
-    let dod=prompt('Edit Date of Death \ndd/mm/yyyy', person.dod);
-    let DPlace=prompt(`Edit place of death or burryed/resting place`);
-    let sex=prompt(`Edit gender`);
-    let father=prompt(`Edit father`);
-    let mother=prompt(`Edit mother`);
-    let sibling=prompt(`Edit siblings`);
-    let child=prompt(`Edit children`)
-    let home=prompt(`Edit home`);
-    let job=prompt('Edit Occupation', person.job);
-
-    // Update the database with new values
-    database[index] = {
-        fName:fName||person.fName,
-        mName:mName||person.mName,
-        lName:lName||person.lName,
-        dob:dob||person.dob,
-        BPlace:BPlace||person.BPlace,
-        dod:dod||person.dod,
-        DPlace:DPlace||person.DPlace,
-        sex:sex||person.sex,
-        father:father||person.father,
-        mother:mother||person.mother,
-        sibling:sibling||person.sibling,
-        child:child||person.child,
-        home:home||person.home,
-        job:job||person.job,
-    };
-
-    // Re-render the updated person
-    renderPerson();
+	let personName=document.getElementById('person-name').getElementsByTagName('span')
+	for(let i=0;i<personName.length;++i){
+		let elementID=personName[i].id
+		let element=document.getElementById(elementID)
+		element.setAttribute('contenteditable','true')
+		element.addEventListener('input',function(){
+			database[index][elementID]=element.innerText
+		})
+	}
+	let personDetails=document.getElementById('person-details').getElementsByTagName('span')
+	for(let i=0;i<personDetails.length;++i){
+		let elementID=personDetails[i].id
+		if(elementID==='age'){
+			continue
+		}
+		let element=document.getElementById(elementID)
+		element.setAttribute('contenteditable','true')
+		element.addEventListener('input',function(){
+			database[index][elementID]=element.innerText
+			document.getElementById('age').innerHTML=calculateAge(database[index].dob,database[index].dod)
+		})
+	}
 }
 function deletePerson(index) {
 	if (prompt(`Insert first name to delete person`)==database[index].fName) {

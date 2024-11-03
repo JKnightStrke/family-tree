@@ -9,7 +9,7 @@ body{
 	display: inline-block;
 }
 
-.person-name{
+#person-name{
 	font-size: 2.5rem;
 	font-weight: bold;
 	text-align: center;
@@ -18,11 +18,21 @@ body{
 	translate: -50%;
 }
 
-.person-name-middle{
+#mName{
 	font-style: italic;
 }
-.person-details{
+#person-details{
 	margin-top: 3.33rem;
+}
+span[contenteditable]{
+	outline: none;
+}
+span[contenteditable]:hover{
+	text-decoration: underline;
+	text-decoration-color: rgba(0, 0, 0, 0.5);
+}
+span[contenteditable]:focus{
+	text-decoration: underline;
 }
 #person-controls{
 	display: flex;
