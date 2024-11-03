@@ -71,43 +71,43 @@ function setFocus(index) {
 }
 
 function renderPerson(focusArg=focus) {
-    let contentQueue = '';
-    let pointer = database[focusArg];  // Get the currently focused person
+	let contentQueue = '';
+	let pointer = database[focusArg];  // Get the currently focused person
 
-    // Check if the pointer exists (meaning a person is selected)
-    if (pointer) {
-        let name = `<span id="fName">${pointer.fName}</span> <span id="mName">${pointer.mName}</span> <span id="lName">${pointer.lName}</span>`;
+	// Check if the pointer exists (meaning a person is selected)
+	if (pointer) {
+		let name = `<span id="fName">${pointer.fName}</span> <span id="mName">${pointer.mName}</span> <span id="lName">${pointer.lName}</span>`;
 
-        const age = calculateAge(pointer.dob, pointer.dod);
-        
-        contentQueue += `
-            <div class="person">
-                <div id="person-name">${name}</div>
-                <div id="person-details">
-                    Date of Birth: <span id="dob">${pointer.dob}</span><br>
-                    ${pointer.BPlace ? `Place of Birth: <span id="BPlace">${pointer.BPlace}</span><br>` : ''}
-                    ${pointer.dod ? `Date of Death: <span id="dod">${pointer.dod}</span><br>` : ''}
-                    ${pointer.DPlace ? `Place of Death: <span id="DPlace">${pointer.DPlace}</span><br>` : ''}
-                    Age: <span id="age">${age}</span><br>
-                    Gender: <span id="sex">${pointer.sex}</span><br>
-                    Father: <span id="father">${pointer.father}</span><br>
-                    Mother: <span id="mother">${pointer.mother}</span><br>
-                    siblings: <span id="siblings">${pointer.siblings}</span><br>
-                    children: <span id="children">${pointer.children}</span><br>
-                    home: <span id="home">${pointer.home}</span><br>
-                    Occupation: <span id="job">${pointer.job}</span><br>
-                    <div id="person-controls">
-                    	<button class="edit-button" onclick="editPerson('${focusArg}')">Edit</button>
-                		<button class="delete-button" onclick="deletePerson('${focusArg}')">Delete</button>
-                	</div>
-                </div>
-            </div>`;
-    } else {
-        // If no person is focused, you can show a message or simply do nothing
-        contentQueue += '<div>No person selected.</div>';
-    }
+		const age = calculateAge(pointer.dob, pointer.dod);
+		
+		contentQueue += `
+			<div class="person">
+				<div id="person-name">${name}</div>
+				<div id="person-details">
+					<span label="Date of Birth" id="dob">${pointer.dob}</span><br>
+					${pointer.BPlace ? `<span label="Place of Birth" id="BPlace">${pointer.BPlace}</span><br>` : ''}
+					${pointer.dod ? `<span label="Date of Death" id="dod">${pointer.dod}</span><br>` : ''}
+					${pointer.DPlace ? `<span label="Place of Death" id="DPlace">${pointer.DPlace}</span><br>` : ''}
+					<span label="Age" id="age">${age}</span><br>
+					<span label="Gender" id="sex">${pointer.sex}</span><br>
+					<span label="Father" id="father">${pointer.father}</span><br>
+					<span label="Mother" id="mother">${pointer.mother}</span><br>
+					<span label="siblings" id="siblings">${pointer.siblings}</span><br>
+					<span label="children" id="children">${pointer.children}</span><br>
+					<span label="home" id="home">${pointer.home}</span><br>
+					<span label="Occupation" id="job">${pointer.job}</span><br>	
+					<div id="person-controls">
+						<button class="edit-button" onclick="editPerson('${focusArg}')">Edit</button>
+						<button class="delete-button" onclick="deletePerson('${focusArg}')">Delete</button>
+					</div>
+				</div>
+			</div>`;
+	} else {
+		// If no person is focused, you can show a message or simply do nothing
+		contentQueue += '<div>No person selected.</div>';
+	}
 
-    document.getElementById('content').innerHTML = contentQueue;
+	document.getElementById('content').innerHTML = contentQueue;
 }
 
 function editPerson(index) {
@@ -144,15 +144,15 @@ function deletePerson(index) {
 
 		// Tools
 function calculateAge(dob, dod) {
-    const dobDate = new Date(dob.split('/').reverse().join('-')); // Convert dd/mm/yyyy to yyyy-mm-dd format
-    const dodDate = dod ? new Date(dod.split('/').reverse().join('-')) : new Date(); // If DOD is provided, convert it; otherwise, use today's date
-    let age = dodDate.getFullYear() - dobDate.getFullYear(); // Calculate age based on year difference
+	const dobDate = new Date(dob.split('/').reverse().join('-')); // Convert dd/mm/yyyy to yyyy-mm-dd format
+	const dodDate = dod ? new Date(dod.split('/').reverse().join('-')) : new Date(); // If DOD is provided, convert it; otherwise, use today's date
+	let age = dodDate.getFullYear() - dobDate.getFullYear(); // Calculate age based on year difference
 
-    // Adjust age if the current date hasn't reached the birthday yet this year
-    const monthDifference = dodDate.getMonth() - dobDate.getMonth();
-    if (monthDifference < 0 || (monthDifference === 0 && dodDate.getDate() < dobDate.getDate())) {
-        age--;
-    }
+	// Adjust age if the current date hasn't reached the birthday yet this year
+	const monthDifference = dodDate.getMonth() - dobDate.getMonth();
+	if (monthDifference < 0 || (monthDifference === 0 && dodDate.getDate() < dobDate.getDate())) {
+		age--;
+	}
 
-    return age;
+	return age;
 }
